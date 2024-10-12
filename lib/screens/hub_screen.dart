@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
+import 'adicionar_mesa_screen.dart'; 
 
 class HubScreen extends StatelessWidget {
-  // Listas de mesas (exemplo)
+  
   final List<String> availableTables = ['Mesa 1', 'Mesa 2', 'Mesa 3'];
-  final List<String> reservedTables = ['Mesa 4', 'Mesa 5'];
+  final List<String> reservedTables = ['Mesa 4', 'Mesa 5', 'Mesa 6'];
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +33,12 @@ class HubScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             Text(
               'Mesas Disponíveis',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
+            const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
                 itemCount: availableTables.length,
@@ -62,10 +64,33 @@ class HubScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Navegar para a tela de cadastro de mesa
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AddTableScreen()), // Nova tela de cadastro
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white, // Cor de fundo do botão
+                  foregroundColor: Color(0xFFa4240e), // Cor do texto
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 15, vertical: 10), // Padding do botão
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(30), // Bordas arredondadas
+                  ),
+                  elevation: 5, // Sombra
+              ),
+              child: Text('Adicionar Mesa'), // Texto do botão
+            ),
+            const SizedBox(height: 20),
             Text(
               'Mesas Reservadas',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
+            const SizedBox(height: 5),
             Expanded(
               child: ListView.builder(
                 itemCount: reservedTables.length,
